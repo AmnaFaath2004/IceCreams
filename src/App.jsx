@@ -42,7 +42,7 @@ function App() {
                         setCart={setCart} />} />
                         <Route path='/Login' element={<Login/>}/>
                         <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/addProduct' element={<ProtectedRoute requiredRole={["Admin","Sellers","User"]}>
+                        <Route path='/addProduct' element={<ProtectedRoute requiredRole={["Admin","Sellers"]}>
                             <AddProduct/>
                         </ProtectedRoute>}/>                                  // Autharization protected Route
                         <Route path='/list-Products' element={<ProtectedRoute> 
