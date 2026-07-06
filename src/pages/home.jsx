@@ -1,7 +1,7 @@
 import Caroo from "../components/caroo"
 import Products from "./products"
 
-function Home({pro}){
+function Home(){
     return(
         <>
         <Caroo/>
