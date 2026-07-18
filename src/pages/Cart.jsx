@@ -60,6 +60,7 @@ function CartList() {
                                     <th>Product Name</th>
                                     <th>Product Price</th>
                                     <th>Quantity</th>
+                                    <th>Proceed</th>
 
                                     <th>Remove
                                     </th>
@@ -95,6 +96,7 @@ function CartList() {
                                                     readOnly
 
                                                 />
+                                                
                                                 <Button variant="outline-secondary"
                                                     id="button-addon1"
                                                     onClick={() => cartQuantityInreament(product.id)}>
@@ -103,10 +105,16 @@ function CartList() {
 
                                             </InputGroup>
                                         </td>
-
+                                        <td>
+                                            <Link to={`/payment/${product.id}`}>
+                                            
+                                            <Button variant="success">Pay</Button>
+                                            
+                                            </Link></td>
+ 
 
                                         <td>
-                                            <Button onClick={() => handleShow(product.id)}>
+                                            <Button variant="danger" onClick={() => handleShow(product.id)}>
                                                 <MdDelete />
                                             </Button></td>
                                     </tr>

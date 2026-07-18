@@ -28,7 +28,7 @@ function AddProduct() {
   const handleAddProduct = (values) => {
     values.id = Date.now()
 
-    
+
 
     dispatch(addProducts(values))//name of action
     toast.success("Product added seccessfully")

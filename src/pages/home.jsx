@@ -1,11 +1,11 @@
 import Caroo from "../components/caroo"
 import Products from "./products"
 
-function Home(){
+function Home({search}){
     return(
         <>
         <Caroo/>
-        <Products  />
+        <Products  search={search} />
         </>
     )
 }

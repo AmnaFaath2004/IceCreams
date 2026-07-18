@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 
-import caroo1 from '../assets/images/caro1.webp'
-import caroo2 from '../assets/images/caro2.jpg'
+import caroo1 from '../assets/images/new.jpg'
+import caroo2 from '../assets/images/new1.jpg'
 import caroo3 from '../assets/images/caro3.jpg'
 import { object } from 'yup'
 import { Container } from 'react-bootstrap';
@@ -17,7 +17,7 @@ function Caroo() {
   }
   return (
     <>
-      <Container className="mt=4 mb-4">
+      <Container className="mt=4 mb-4" style={{marginTop:"20px"}}>
         <Carousel fade>
           <Carousel.Item>
 
