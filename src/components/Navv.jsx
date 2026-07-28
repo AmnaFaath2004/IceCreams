@@ -49,6 +49,7 @@ function Naav({ search, setSearch }) {
             <Nav className="ms-auto">
               <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
               <Nav.Link as={Link} to={"/products"}>products</Nav.Link>
+              <Nav.Link as={Link} to={"/profile"}>Profile</Nav.Link>
              
 
               {!isAuthenticated &&

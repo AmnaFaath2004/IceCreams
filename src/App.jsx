@@ -26,6 +26,7 @@ import ListUsers from './Admin/ListUsers';
 import EditUsers from './Admin/EditUser';
 import Payment from './pages/Payment';
 import Bookings from './pages/Bookings';
+import Profile from './pages/profile';
 function App() {
 
     const [cart, setCart] = useState(0)
@@ -69,6 +70,7 @@ function App() {
                     <Route path='/bookings' element={<ProtectedRoute requiredRole={["Admin", "Seller"]}>
                         <Bookings/>
                     </ProtectedRoute>}/>
+                    <Route path='/profile' element={<Profile/>}/>
 
 
 

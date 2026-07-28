@@ -6,6 +6,8 @@ function Home({search}){
         <>
         <Caroo/>
         <Products  search={search} />
+        <h1>hii</h1>
+        <h2>hiii</h2>
         </>
     )
 }

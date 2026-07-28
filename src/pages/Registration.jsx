@@ -28,7 +28,7 @@ function Registration() {
   });
   const handleRegister = (values) => {
     values.id = Date.now()
-    values.role = "user";
+    values.role = "User";
     values.status = true;
     //console.log("values-------->", values);
 
