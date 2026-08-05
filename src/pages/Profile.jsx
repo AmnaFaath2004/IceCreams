@@ -46,13 +46,14 @@ function Profile() {
               position: "absolute",
               bottom: "5px",
               right: "5px",
-              width: "40px",
-              height: "40px",
+              width: "120px",
+              height: "120px",
               borderRadius: "50%",
               border: "none",
               backgroundColor: "#0d6efd",
               color: "white",
               cursor: "pointer",
+              marginRight:"20px"
             }}
           >
             <BsCameraFill />
@@ -71,7 +72,7 @@ function Profile() {
            <h1>{user?.fullName ?? null}</h1>
                                 <p> ID :{user?.id ?? ""}</p>
                                  <h3>{user?.email ?? ""}</h3>
-                                <h3>{user?.role ?? ""}</h3>
+                                <h3>Role :{user?.role ?? ""}</h3>
 
                                 <Button
                                     variant="dark"

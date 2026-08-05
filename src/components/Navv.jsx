@@ -17,6 +17,9 @@ function Naav({ search, setSearch }) {
 
   const { isAuthenticated, user } = useSelector((state) => state.userState);
 
+  const userCart = cartItems.filter(
+  (item) => item.cartUserId === user?.id
+);
 
   const handeLogOut = () => {
     toast.success("User Logged out sucssessfully")
@@ -50,26 +53,29 @@ function Naav({ search, setSearch }) {
               <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
               <Nav.Link as={Link} to={"/products"}>products</Nav.Link>
               <Nav.Link as={Link} to={"/profile"}>Profile</Nav.Link>
-             
+
 
               {!isAuthenticated &&
                 (<Nav.Link as={Link} to={"/Login"}>Login</Nav.Link>)}
 
-              {isAuthenticated && (user.role === "Admin" || user.role === "User") && (
+              {isAuthenticated &&  (
                 <Nav.Link
-                as={Link}
-                to={"/cart-list"}
-                className='position-relative'>
-                Cart
-                <span className='booking' style={{marginLeft:"4px"}}>{cartItems.length}</span>
+                  as={Link}
+                  to={"/cart-list"}
+                  className='position-relative'>
+                  Cart
+                  <span className='booking' style={{ marginLeft: "4px" }}>{userCart.length}</span>
 
-              </Nav.Link>)}
+                </Nav.Link>)}
               {isAuthenticated &&
-                (user.role === "Admin" || user.role === "Seller") && (
+                (user.role === "Seller") && (
                   <Nav.Link as={Link} to={"/List-Products"}>  List Products</Nav.Link>)}
-{isAuthenticated &&(user.role === "Admin" ||user.role === "Seller") &&(
-  <Nav.Link as={Link} to={"bookings"}>Bookings</Nav.Link>
-)}
+                   {isAuthenticated &&
+                (user.role === "Admin") && (
+                  <Nav.Link as={Link} to={"/adminList"}>  List Products</Nav.Link>)}
+              {isAuthenticated && ( user.role === "Seller") && (
+                <Nav.Link as={Link} to={"bookings"}>Bookings</Nav.Link>
+              )}
 
               {isAuthenticated &&
                 (user.role === "Admin") && (

@@ -10,8 +10,11 @@ import { toast } from "react-toastify"
 
 const ListProducts = () => {
     const { products } = useSelector((state) => state.productState)
-    console.log("Products----->", products);
+   const { user } = useSelector((state) => state.userState);
 
+   const sellerProducts = products.filter(
+    (product) => product.sellerId === user.id
+);
 
     const [show, setShow] = useState(false);
     const [deleteProductIndex, setDeleteProductIndex] = useState(null)
@@ -53,7 +56,7 @@ const ListProducts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {products.map((product, i) => (
+                                {sellerProducts.map((product, i) => (
                                     <tr key={i}>
                                         <td>
                                             {i + 1}

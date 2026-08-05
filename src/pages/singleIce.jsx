@@ -2,18 +2,61 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { addCartItem } from "../Redux/CartSlice"
+import { toast } from "react-toastify"
 
 function Single({ cart, setCart }) {
     const { products } = useSelector((state) => state.productState)
     const { id } = useParams()
     const single = products.find((p) => p.id === Number(id))
     const dispatch = useDispatch()
+    const { user } = useSelector((state) => state.userState);
 
+    const isOwnProduct =
+    user?.role === "Seller" && single?.sellerId === user?.id;
+
+    // const handleAddCart = () => {
+
+    // console.log("User:", user);
+    // console.log("Product:", single);
+
+    //     if (isOwnProduct) {
+    //         toast.error("You can't add your own product to the cart.");
+    //         return;
+    //     }
+    //     // setCart(cart+1)
+
+    // console.log("Sending to cart:", cartProduct);
+    //     dispatch(addCartItem({
+    //         ...single,
+    //         cartUserId: user.id
+
+    //     }
+
+    //     ))
+    //     toast.success("Product added to cart successfully")
+    // }
 
     const handleAddCart = () => {
-        // setCart(cart+1)
-        dispatch(addCartItem(single))
+
+    console.log("User:", user);
+    console.log("Product:", single);
+
+    if (isOwnProduct) {
+        toast.error("You can't add your own product to the cart.");
+        return;
     }
+
+    const cartProduct = {
+        ...single,
+        cartUserId: user.id
+    };
+
+    console.log("Sending to cart:", cartProduct);
+
+    dispatch(addCartItem(cartProduct));
+
+    toast.success("Product added to cart successfully");
+}
     return (
         <>
             <Container className="mt-5">
@@ -38,7 +81,11 @@ function Single({ cart, setCart }) {
 
                                 <Button
                                     variant="dark"
-                                    onClick={handleAddCart}>Add to Cart</Button>
+                                    onClick={handleAddCart}
+
+                                >
+
+                                    Add to cart</Button>
                             </Card.Body>
 
 

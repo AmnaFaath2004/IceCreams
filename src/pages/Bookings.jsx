@@ -5,6 +5,11 @@ import { useSelector } from 'react-redux';
 
 function Bookings(){
     const {payment}=useSelector((state)=>state.paymentState)
+    const { user } = useSelector((state) => state.userState);
+    const sellerBookings =
+    user.role === "Admin"
+        ? payment
+        : payment.filter((booking) => booking.sellerId === user.id);
     return(
         <>
          <Container className="mt-3">
@@ -28,7 +33,7 @@ function Bookings(){
         </tr>
       </thead>
       <tbody>
-        {payment.map((custumer, i) => (
+        {sellerBookings.map((custumer, i) => (
                                     <tr key={i}>
                                         <td>
                                             {i + 1}

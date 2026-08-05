@@ -32,6 +32,7 @@ function EditProducts() {
 
   const handleEditProduct = (values) => {   
     values.id = Number(id)
+     values.sellerId = product.sellerId;
     
 
     dispatch(editProducts(values))//name of action

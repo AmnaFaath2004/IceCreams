@@ -11,8 +11,15 @@ const paymentSlice = createSlice({
             state.payment.push(action.payload)
             localStorage.setItem("Payment", JSON.stringify(state.payment))
 
-        }
+        },
+        deleteBookings: (state, action) => {
+            const productIndex = state.payment.findIndex((pr) => pr.id === action.payload)
+            if (productIndex !== -1) {
+                state.payment.splice(productIndex, 1)
+                localStorage.setItem("Payment", JSON.stringify(state.payment))
+            }
+        },
     }
 })
 export default paymentSlice.reducer;
-export const { addPaymentDetails } = paymentSlice.actions
+export const { addPaymentDetails ,deleteBookings} = paymentSlice.actions

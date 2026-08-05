@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import * as formik from 'formik';
 import * as yup from 'yup';
 import { Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../Redux/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ function AddProduct() {
   const { Formik } = formik;
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { user } = useSelector((state) => state.userState);
 
   const schema = yup.object().shape({
     productName: yup.string().required("Enter your Product name"),
@@ -27,6 +28,9 @@ function AddProduct() {
   });
   const handleAddProduct = (values) => {
     values.id = Date.now()
+    // Save the logged-in seller's ID
+     values.sellerId = user.id;
+     values.sellerName=user.fullName;
 
 
 

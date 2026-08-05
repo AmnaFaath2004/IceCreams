@@ -26,7 +26,8 @@ import ListUsers from './Admin/ListUsers';
 import EditUsers from './Admin/EditUser';
 import Payment from './pages/Payment';
 import Bookings from './pages/Bookings';
-import Profile from './pages/profile';
+import Profile from './pages/Profile';
+import AdminList from './Admin/AdminList';
 function App() {
 
     const [cart, setCart] = useState(0)
@@ -71,6 +72,7 @@ function App() {
                         <Bookings/>
                     </ProtectedRoute>}/>
                     <Route path='/profile' element={<Profile/>}/>
+                    <Route path='/adminList' element={<AdminList/>}/>
 
 
 

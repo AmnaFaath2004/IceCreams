@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 
 function CartList() {
     const { cartItems } = useSelector((state) => state.cartState)
+    const { user } = useSelector((state) => state.userState);
     const [show, setShow] = useState(false);
     const [deleteCartIndex, setDeleteCartIndex] = useState(null)
     const dispatch = useDispatch()
@@ -19,29 +20,49 @@ function CartList() {
         setDeleteCartIndex(productId)
     }
 
+    const userCart = cartItems.filter(
+    (item) => item.cartUserId === user.id
+);
+
     const handleDeleteCart = () => {
-        dispatch(deleteCart(deleteCartIndex))
+        dispatch(deleteCart({
+            id:deleteCartIndex,
+            cartUserId: user.id
+
+        }))
         toast.success("Cart Item Deleted Successfull")
         setShow(false);
         setDeleteCartIndex(null);
 
     }
     const cartQuantityInreament = (productId) => {
-        dispatch(increamentCartQantity(productId))
+        console.log("Increment id:", productId);
+    console.log("User id:", user.id);
+
+        dispatch(increamentCartQantity({
+            id:productId,
+         cartUserId: user.id}))
     }
     const cartQuantitydereament = (productId) => {
-        dispatch(decreamentCartQantity(productId))
+        dispatch(decreamentCartQantity({
+            id:productId,
+            cartUserId: user.id
+        }))
     }
-    const totalPrice = cartItems ?.reduce((total, item) => {
+    const totalPrice = userCart ?.reduce((total, item) => {
         total += item.quantity * item.productPrice;
         return total
     }, 0)
 
-    const totalQuantity = cartItems?.reduce((total,items)=>{
-        total+= items.quantity
-        return total
-    },0)
+   const totalQuantity = userCart.reduce(
+    (total, item) => total + Number(item.quantity),
+    0
+);
 
+
+    console.log("Logged in user:", user);
+console.log("All cart items:", cartItems);
+console.log("User cart:", userCart);
     return (
         <>
             <Container className="mt-3">
@@ -67,7 +88,7 @@ function CartList() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cartItems.map((product, i) => (
+                                {userCart.map((product, i) => (
                                     <tr key={i}>
                                         <td>
                                             {i + 1}
