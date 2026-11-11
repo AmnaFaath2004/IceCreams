@@ -26,7 +26,7 @@ const  AdminList = () => {
                                     <th>Seller ID</th>
                                     <th>Seller Name</th>
                                     <th>Product Price</th>
-                                    <th>Delete</th> 
+                                    
                                 </tr>
                             </thead>
                             <tbody>
